@@ -66,11 +66,22 @@ class Pagamento:
         else:
             print(" Método de pagamento inválido!")
             return None
+        valor_pago = input("Digite o valor pago: ")
+        try:
+            valor_pago = float(valor_pago)
+            if valor_pago < total:
+                print(f"Valor insuficiente! Faltam R${total - valor_pago:.2f}")
+                return None
+            troco = valor_pago - total
+            print(f"Pagamento recebido. Troco: R${troco:.2f}")
+        except ValueError:
+            print("Valor inválido!")
+            return None
 
         return total
 
 estoque = [
-    Produto("Notebook", 3500.00, 10),
+    Produto("Notebook", 3300.00, 10),
     Produto("Teclado", 200.00, 15),
     Produto("Mouse", 100.00, 20),
     Produto("Monitor", 1200.00, 5)
